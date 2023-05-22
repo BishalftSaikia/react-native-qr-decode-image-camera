@@ -1,4 +1,5 @@
 # react-native-qr-decode-image-camera
+# Removed RN camera dependency
 
 ```bash
 yarn add react-native-qr-decode-image-camera
