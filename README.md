@@ -1,5 +1,8 @@
 # react-native-qr-decode-image-camera
+
 # Removed RN camera dependency
+
+# Modified gradle props
 
 ```bash
 yarn add react-native-qr-decode-image-camera
@@ -35,7 +38,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { QRscanner } from "react-native-qr-decode-image-camera";
 
@@ -44,7 +47,7 @@ export default class Scanner extends Component {
     super(props);
     this.state = {
       flashMode: false,
-      zoom: 0.2
+      zoom: 0.2,
     };
   }
   render() {
@@ -74,15 +77,15 @@ export default class Scanner extends Component {
       </View>
     );
   };
-  onRead = res => {
+  onRead = (res) => {
     console.log(res);
   };
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000"
-  }
+    backgroundColor: "#000",
+  },
 });
 ```
 
@@ -95,7 +98,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { QRreader } from "react-native-qr-decode-image-camera";
 import ImagePicker from "react-native-image-picker";
@@ -106,8 +109,8 @@ export default class Scanner extends Component {
     this.state = {
       reader: {
         message: null,
-        data: null
-      }
+        data: null,
+      },
     };
   }
   render() {
@@ -139,7 +142,7 @@ export default class Scanner extends Component {
 
   openPhoto() {
     console.log("ImagePicker");
-    ImagePicker.launchImageLibrary({}, response => {
+    ImagePicker.launchImageLibrary({}, (response) => {
       console.log("Response = ", response);
 
       if (response.didCancel) {
@@ -155,28 +158,28 @@ export default class Scanner extends Component {
             path = response.uri;
           }
           QRreader(path)
-            .then(data => {
+            .then((data) => {
               this.setState({
                 reader: {
                   message: "message",
-                  data: data
-                }
+                  data: data,
+                },
               });
               setTimeout(() => {
                 this.setState({
                   reader: {
                     message: null,
-                    data: null
-                  }
+                    data: null,
+                  },
                 });
               }, 10000);
             })
-            .catch(err => {
+            .catch((err) => {
               this.setState({
                 reader: {
                   message: "message",
-                  data: null
-                }
+                  data: null,
+                },
               });
             });
         }
@@ -187,15 +190,15 @@ export default class Scanner extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
-  }
+    backgroundColor: "#fff",
+  },
 });
 ```
 
 ### QRscanner
 
 | method             | type    | example                                                           | Remarks                                                                                   |
-| ------------------ | ------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| ------------------ | ------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | --- |
 | isRepeatScan       | boolean | false                                                             | whether to allow repeated scanning                                                        |
 | zoom               | number  | 0                                                                 | Camera focal length range 0-1                                                             |
 | flashMode          | bool    | false                                                             | Turn on the flashlight                                                                    |
@@ -220,7 +223,7 @@ const styles = StyleSheet.create({
 | scanBarMargin      | number  | 6                                                                 | scanline left and right margin                                                            |
 | hintText           | string  | 'Put QR code / bar code into the box and scan it automatically'   |                                                                                           |
 | hintTextStyle      | object  | {color: '# fff', fontSize: 14, backgroundColor: 'transparent'}    | hint string style                                                                         |
-| hintTextPosition   | number  | 130                                                               | I dick knows that in this column the shot is written in Chinese understand it yourself))) |  |
+| hintTextPosition   | number  | 130                                                               | I dick knows that in this column the shot is written in Chinese understand it yourself))) |     |
 | renderTopView      | func    | () => {}                                                          | render top View                                                                           |
 | renderBottomView   | func    | () => <View style = {{flex: 1, backgroundColor: '# 0000004D'}} /> | render bottom View                                                                        |
 | isShowScanBar      | bool    | true                                                              | whether to show scan lines                                                                |
